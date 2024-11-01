@@ -95,6 +95,8 @@ python app.py
 ### Open a Web Browser:
 1. Go to `http://127.0.0.1:5000`. You should see your Flask app!
 
+![Locally Run](<img/Screenshot (36).png>)
+
 ## Step 6: Create a Dockerfile
 
 ### Create a Dockerfile:
@@ -167,7 +169,11 @@ docker tag flask_app your_dockerhub_username/flask_app
 ```bash
 docker push your_dockerhub_username/flask_app
 ```
+![dockerHub Pushed](<img/Screenshot (33).png>)
 
+## Docker Hub Repository
+
+You can find the Docker image for this project on Docker Hub: [abhixsh/flask_app](https://hub.docker.com/r/abhixsh/flask_app)
 ## Step 9: Run Your Docker Container on EC2
 
 ### Launch an EC2 Instance:
@@ -196,9 +202,13 @@ sudo docker run -d -p 5000:5000 -e BG_COLOR=pink your_dockerhub_username/flask_a
 ### Access Your Flask App:
 1. Open a web browser and go to `http://<Your-EC2-Public-IP>:5000`.
 
+![Ec2 pushed](<img/Screenshot (35).png>)
+
 ## Check EC2 Security Group Settings
 
 Make sure the Security Group associated with your EC2 instance allows inbound traffic on port 5000 (or the port you specified in your Docker command). To do this, go to the EC2 Dashboard > Instances > select your instance > Security > Security Groups. Click on the Security Group, then Edit Inbound Rules, and add the following rule:
 - **Type:** Custom TCP
 - **Port Range:** 5000
 - **Source:** Anywhere (0.0.0.0/0) if it’s public, or specify your IP for more security.
+
+![Inbound Rules](<img/Screenshot (34).png>)
