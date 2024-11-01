@@ -128,7 +128,6 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 
 CMD ["venv/bin/python", "app.py"]
-
 ```
 
 ## Step 7: Build the Docker Image
@@ -196,3 +195,10 @@ sudo docker run -d -p 5000:5000 -e BG_COLOR=pink your_dockerhub_username/flask_a
 
 ### Access Your Flask App:
 1. Open a web browser and go to `http://<Your-EC2-Public-IP>:5000`.
+
+## Check EC2 Security Group Settings
+
+Make sure the Security Group associated with your EC2 instance allows inbound traffic on port 5000 (or the port you specified in your Docker command). To do this, go to the EC2 Dashboard > Instances > select your instance > Security > Security Groups. Click on the Security Group, then Edit Inbound Rules, and add the following rule:
+- **Type:** Custom TCP
+- **Port Range:** 5000
+- **Source:** Anywhere (0.0.0.0/0) if it’s public, or specify your IP for more security.
