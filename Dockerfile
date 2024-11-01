@@ -1,25 +1,24 @@
-# Use the official Ubuntu image
-FROM ubuntu:latest
+# Use the official Python image as a base
+FROM python:3.12-slim
 
-# Set environment variables
-ENV DEBIAN_FRONTEND=noninteractive
+# Set the working directory in the container
+WORKDIR /app
 
-# Install Python, pip, and other dependencies
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip python3-dev build-essential && \
-    apt-get clean
+# Copy the current directory contents into the container
+COPY . /app
 
-# Set the working directory
-WORKDIR /
+# Install virtual environment package and create a virtual environment
+RUN apt-get update && apt-get install -y python3-venv \
+    && python3 -m venv venv
 
-# Copy the app files
-COPY . .
-
-# Install Flask
-RUN pip3 install flask
+# Activate the virtual environment and install Flask
+RUN . venv/bin/activate && pip install flask
 
 # Expose the port the app runs on
 EXPOSE 5000
 
-# Command to run the application
-CMD ["python3", "app.py"]
+# Set the environment variable for Flask
+ENV FLASK_APP=app.py
+
+# Use the virtual environment to run the app
+CMD ["venv/bin/python", "app.py"]
