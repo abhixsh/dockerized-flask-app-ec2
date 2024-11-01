@@ -153,3 +153,23 @@ cd path\to\flask_app
 ```bash
 docker build -t flask_app .
 ```
+
+Step 8: Push the Docker Image to Docker Hub
+Create a Docker Hub Account:
+
+Sign up at Docker Hub.
+Log in to Docker Hub:
+
+bash
+Copy code
+docker login
+Tag Your Image:
+
+bash
+Copy code
+docker tag flask_app your_dockerhub_username/flask_app
+Push the Image:
+
+bash
+Copy code
+docker push your_dockerhub_username/flask_app
