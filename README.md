@@ -105,15 +105,6 @@ python app.py
 ### Write the Dockerfile Code:
 1. Open the `Dockerfile` in a text editor and paste this code:
 ```dockerfile
-# Use the official Ubuntu image
-FROM ubuntu:latest
-
-# Install Python and pip
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    apt-get clean
-
-# Set the working directory
 FROM python:3.12-slim
 
 WORKDIR /app
