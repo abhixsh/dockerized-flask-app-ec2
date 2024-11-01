@@ -112,28 +112,23 @@ RUN apt-get update && \
     apt-get clean
 
 # Set the working directory
+FROM python:3.12-slim
+
 WORKDIR /app
 
-# Copy the app files
-COPY . .
+COPY . /app
 
-# Install Flask
-RUN pip3 install flask
+RUN apt-get update && apt-get install -y python3-venv \
+    && python3 -m venv venv
 
-# Expose the port the app runs on
+RUN . venv/bin/activate && pip install flask
+
 EXPOSE 5000
 
-# Install dependencies
-RUN pip3 install -r requirements.txt
+ENV FLASK_APP=app.py
 
-# Command to run the application
-CMD ["python3", "app.py"]
-```
+CMD ["venv/bin/python", "app.py"]
 
-### Create a `requirements.txt` File:
-1. Create a `requirements.txt` file in the `flask_app` folder and add the following line:
-```
-flask
 ```
 
 ## Step 7: Build the Docker Image
