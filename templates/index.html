@@ -6,7 +6,7 @@
     <title>Flask App</title>
     <style>
         body {
-            background-color: {{ bg_color }}; /* Background color from environment variable */
+            background-color: {{ bg_color | safe }}; /* Background color from environment variable */
             color: black;
             font-family: Arial, sans-serif;
             text-align: center;
