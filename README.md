@@ -154,22 +154,50 @@ cd path\to\flask_app
 docker build -t flask_app .
 ```
 
-Step 8: Push the Docker Image to Docker Hub
-Create a Docker Hub Account:
+## Step 8: Push the Docker Image to Docker Hub
 
-Sign up at Docker Hub.
-Log in to Docker Hub:
+### Create a Docker Hub Account:
+1. Sign up at Docker Hub.
 
-bash
-Copy code
+### Log in to Docker Hub:
+```bash
 docker login
-Tag Your Image:
+```
 
-bash
-Copy code
+### Tag Your Image:
+```bash
 docker tag flask_app your_dockerhub_username/flask_app
-Push the Image:
+```
 
-bash
-Copy code
+### Push the Image:
+```bash
 docker push your_dockerhub_username/flask_app
+```
+
+## Step 9: Run Your Docker Container on EC2
+
+### Launch an EC2 Instance:
+1. Go to AWS Management Console and launch a new EC2 instance using an Ubuntu image.
+
+### SSH into Your EC2 Instance:
+1. Follow the instructions to connect via SSH.
+
+### Install Docker on EC2:
+```bash
+sudo apt-get update
+sudo apt-get install -y docker.io
+```
+
+### Pull Your Docker Image:
+```bash
+sudo docker pull your_dockerhub_username/flask_app
+```
+
+### Run Your Docker Container:
+1. Replace `pink` with any color you want for the background:
+```bash
+sudo docker run -d -p 5000:5000 -e BG_COLOR=pink your_dockerhub_username/flask_app
+```
+
+### Access Your Flask App:
+1. Open a web browser and go to `http://<Your-EC2-Public-IP>:5000`.
